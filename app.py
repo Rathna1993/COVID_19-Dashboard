@@ -4,34 +4,63 @@ import matplotlib.pyplot as plt
 # Load dataset
 df = pd.read_csv("C:\\Users\\Ashokmep\\Desktop\\Covid.csv")
 
+# Print dataset
 print(df)
 
-# Cases line graph
+# Create figure
+plt.figure(figsize=(10,5))
+
+# Cases graph
 plt.plot(
     df["Day"],
     df["Cases"],
     marker='o',
     color='red',
+    linewidth=3,
     label='Cases'
 )
 
-# Recovery line graph
+# Recoveries graph
 plt.plot(
     df["Day"],
     df["Recoveries"],
     marker='o',
     color='green',
+    linewidth=3,
     label='Recoveries'
 )
 
-# Labels
+# Deaths graph
+plt.plot(
+    df["Day"],
+    df["Deaths"],
+    marker='o',
+    color='black',
+    linewidth=3,
+    label='Deaths'
+)
+
+# Add data labels
+for i, value in enumerate(df["Cases"]):
+    plt.text(i, value, str(value), ha='center')
+
+for i, value in enumerate(df["Recoveries"]):
+    plt.text(i, value, str(value), ha='center')
+
+for i, value in enumerate(df["Deaths"]):
+    plt.text(i, value, str(value), ha='center')
+
+# Title and labels
 plt.title("COVID-19 Dashboard")
 
-plt.xlabel("Day")
+plt.xlabel("Days")
 plt.ylabel("Count")
 
+# Legend
 plt.legend()
 
+# Grid
 plt.grid(True)
 
+# Show graph
 plt.show()
